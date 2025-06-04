@@ -10,6 +10,9 @@ def save_script(row: pd.Series, schema_path: str, script_type: str):
     script_name = row.script_name
     script_code = row.script_code
 
+    if pd.isna(script_name):
+        return
+
     script_file_path = get_script_path(schema_path, script_type, script_name)
 
     with open(script_file_path, 'w', encoding='utf-8') as f:
